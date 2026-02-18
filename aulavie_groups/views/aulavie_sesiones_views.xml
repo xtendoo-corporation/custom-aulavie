@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Vista Calendario de Sesiones -->
+    <record id="view_aulavie_sesiones_calendar" model="ir.ui.view">
+        <field name="name">aulavie.sesiones.calendar</field>
+        <field name="model">aulavie.sesiones</field>
+        <field name="arch" type="xml">
+            <calendar string="Calendario de Sesiones"
+                      date_start="fecha_hora_inicio"
+                      date_stop="fecha_hora_fin"
+                      color="grupo_id"
+                      mode="week">
+                <field name="nombre"/>
+                <field name="grupo_id"/>
+            </calendar>
+        </field>
+    </record>
+
+    <!-- Acción de ventana -->
+    <record id="action_aulavie_sesiones_calendar" model="ir.actions.act_window">
+        <field name="name">Calendario</field>
+        <field name="res_model">aulavie.sesiones</field>
+        <field name="view_mode">calendar</field>
+    </record>
+
+</odoo>

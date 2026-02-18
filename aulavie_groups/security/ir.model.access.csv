@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_aulavie_groups_user,aulavie.groups.user,model_aulavie_groups,base.group_user,1,1,1,1
+access_aulavie_days_user,aulavie.days.user,model_aulavie_days,base.group_user,1,1,1,1
+access_aulavie_sesiones_user,aulavie.sesiones.user,model_aulavie_sesiones,base.group_user,1,1,1,1

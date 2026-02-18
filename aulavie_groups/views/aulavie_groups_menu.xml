@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Cambiamos la secuencia de Configuración -->
+    <record id="contacts.res_partner_menu_config" model="ir.ui.menu">
+        <field name="sequence">10</field>
+    </record>
+
+    <!-- Pestaña Grupos dentro de Contactos (sin action) -->
+    <menuitem id="menu_aulavie_groups_root"
+              name="Grupos"
+              parent="contacts.menu_contacts"
+              sequence="5"/>
+
+    <!-- Submenú: Grupos -->
+    <menuitem id="menu_aulavie_groups"
+              name="Grupos"
+              parent="menu_aulavie_groups_root"
+              action="action_aulavie_groups"
+              sequence="5"/>
+
+    <!-- Submenú: Calendario -->
+    <menuitem id="menu_aulavie_calendario"
+              name="Calendario"
+              parent="menu_aulavie_groups_root"
+              action="action_aulavie_sesiones_calendar"
+              sequence="10"/>
+
+</odoo>
