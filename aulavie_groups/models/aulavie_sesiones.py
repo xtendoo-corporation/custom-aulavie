@@ -7,6 +7,7 @@ from datetime import datetime, timedelta
 class AulavieSesiones(models.Model):
     _name = 'aulavie.sesiones'
     _description = 'Sesiones de Grupo'
+    _rec_name = 'nombre'
     _order = 'fecha_hora_inicio'
 
     nombre = fields.Char(
