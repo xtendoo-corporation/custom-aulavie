@@ -1,3 +1,9 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_partner_course_user,access.partner.course.user,model_partner_course,base.group_user,1,1,1,1
+access_import_alumnos_wizard_user,access.import.alumnos.wizard.user,model_import_alumnos_wizard,base.group_user,1,1,1,1
+access_nivel_escolar_user,access.nivel.escolar.user,model_nivel_escolar,base.group_user,1,1,1,1
+access_partner_course_profesor,access.partner.course.profesor,model_partner_course,partner_social_course.group_profesor_aulavie,1,0,0,0
+access_aulavie_groups_profesor,access.aulavie.groups.profesor,aulavie_groups.model_aulavie_groups,partner_social_course.group_profesor_aulavie,1,0,0,0
+access_aulavie_sesiones_profesor,access.aulavie.sesiones.profesor,aulavie_groups.model_aulavie_sesiones,partner_social_course.group_profesor_aulavie,1,0,0,0
+access_aulavie_days_profesor,access.aulavie.days.profesor,aulavie_groups.model_aulavie_days,partner_social_course.group_profesor_aulavie,1,0,0,0
 

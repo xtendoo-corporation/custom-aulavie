@@ -1,45 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <!-- Herencia vista formulario de contactos -->
     <record id="view_partner_form_inherit_social_course" model="ir.ui.view">
         <field name="name">res.partner.form.inherit.social.course</field>
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//sheet/notebook" position="inside">
-                <page string="Redes y Cursos">
-                    <group string="Configuración">
+
+
+             <!-- Insertar antes de la primera pestaña existente -->
+            <xpath expr="//notebook/page[1]" position="before">
+                <!-- Primera pestaña por defecto -->
+                <!-- Primero: Gestión académica -->
+                <page string="Gestión académica">
+                    <notebook>
+                        <page string="Redes y Cursos">
+                            <group string="Configuración">
+                                <field name="permitir_salir_redes_sociales"/>
+                            </group>
+                            <group string="Cursos y Grupos">
+                                <field name="curso_ids" widget="many2many_tags" options="{'no_create_edit': False}"/>
+                                <field name="aulavie_group_ids" widget="many2many_tags" readonly="1"/>
+                            </group>
+                            <group string="Relación Profesor / Alumno">
+                                <field name="profesor_id"
+                                       invisible="rol_contacto == 'profesor'"
+                                       domain="[('rol_contacto', '=', 'profesor')]"/>
+                                <field name="alumno_user_ids" widget="many2many_tags" readonly="1"
+                                       invisible="rol_contacto != 'profesor'"/>
+                            </group>
+                            <group string="Alumnos asociados" invisible="rol_contacto != 'profesor'">
+                                <field name="alumno_ids" nolabel="1">
+                                    <list>
+                                        <field name="name"/>
+                                        <field name="email"/>
+                                        <field name="phone"/>
+                                        <field name="rol_contacto"/>
+                                    </list>
+                                </field>
+                            </group>
+                        </page>
+                    </notebook>
+                </page>
+
+                <!-- Segundo: Datos alumno -->
+                <page string="Datos alumno">
+                    <group>
                         <field name="rol_contacto"/>
-                        <field name="permitir_salir_redes_sociales"/>
+                        <field name="fecha_nacimiento"/>
+                        <field name="colegio_actual"/>
+                        <field name="nivel_escolar_id"/>
+                        <field name="alergias_intolerancias"/>
+                        <field name="permitir_volver_solo_casa"/>
                     </group>
-                    <group string="Cursos y Grupos">
-                        <field name="curso_ids" widget="many2many_tags" options="{'no_create_edit': False}"/>
-                        <field name="aulavie_group_ids" widget="many2many_tags" readonly="1"/>
-                    </group>
-                    <group string="Relación Profesor / Alumno">
-                        <field name="profesor_id"
-                               invisible="rol_contacto == 'profesor'"
-                               domain="[('rol_contacto', '=', 'profesor')]"/>
-                        <field name="alumno_user_ids" widget="many2many_tags" readonly="1"
-                               invisible="rol_contacto != 'profesor'"/>
-                    </group>
-                    <group string="Alumnos asociados" invisible="rol_contacto != 'profesor'">
-                        <field name="alumno_ids" nolabel="1">
-                            <list>
-                                <field name="name"/>
-                                <field name="email"/>
-                                <field name="phone"/>
-                                <field name="rol_contacto"/>
-                            </list>
-                        </field>
+                    <group>
+                        <field name="tiene_necesidades_especiales"/>
+                        <field name="necesidades_especiales_detalle"
+                               invisible="not tiene_necesidades_especiales"
+                               required="tiene_necesidades_especiales"/>
                     </group>
                 </page>
+
             </xpath>
         </field>
     </record>
 
-    <!-- Vista lista de cursos -->
+    <!-- Mantengo tus vistas de cursos -->
     <record id="view_partner_course_list" model="ir.ui.view">
         <field name="name">partner.course.list</field>
         <field name="model">partner.course</field>
@@ -51,7 +77,6 @@
         </field>
     </record>
 
-    <!-- Vista formulario de cursos -->
     <record id="view_partner_course_form" model="ir.ui.view">
         <field name="name">partner.course.form</field>
         <field name="model">partner.course</field>
@@ -67,14 +92,12 @@
         </field>
     </record>
 
-    <!-- Acción ventana de cursos -->
     <record id="action_partner_course" model="ir.actions.act_window">
         <field name="name">Cursos</field>
         <field name="res_model">partner.course</field>
         <field name="view_mode">list,form</field>
     </record>
 
-    <!-- Menú bajo Contactos > Configuración -->
     <menuitem
         id="menu_partner_course_root"
         name="Cursos"
@@ -84,4 +107,3 @@
     />
 
 </odoo>
-

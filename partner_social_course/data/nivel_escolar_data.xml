@@ -1,0 +1,57 @@
+<odoo noupdate="1">
+ <record id="nivel_01_primaria" model="nivel.escolar">
+ <field name="name">1º Primaria</field>
+ <field name="orden">10</field>
+ </record>
+ <record id="nivel_02_primaria" model="nivel.escolar">
+ <field name="name">2º Primaria</field>
+ <field name="orden">20</field>
+ </record>
+ <record id="nivel_03_primaria" model="nivel.escolar">
+ <field name="name">3º Primaria</field>
+ <field name="orden">30</field>
+ </record>
+ <record id="nivel_04_primaria" model="nivel.escolar">
+ <field name="name">4º Primaria</field>
+ <field name="orden">40</field>
+ </record>
+ <record id="nivel_05_primaria" model="nivel.escolar">
+ <field name="name">5º Primaria</field>
+ <field name="orden">50</field>
+ </record>
+ <record id="nivel_06_primaria" model="nivel.escolar">
+ <field name="name">6º Primaria</field>
+ <field name="orden">60</field>
+ </record>
+
+ <record id="nivel_01_eso" model="nivel.escolar">
+ <field name="name">1º ESO</field>
+ <field name="orden">70</field>
+ </record>
+ <record id="nivel_02_eso" model="nivel.escolar">
+ <field name="name">2º ESO</field>
+ <field name="orden">80</field>
+ </record>
+ <record id="nivel_03_eso" model="nivel.escolar">
+ <field name="name">3º ESO</field>
+ <field name="orden">90</field>
+ </record>
+ <record id="nivel_04_eso" model="nivel.escolar">
+ <field name="name">4º ESO</field>
+ <field name="orden">100</field>
+ </record>
+
+ <record id="nivel_01_bach" model="nivel.escolar">
+ <field name="name">1º Bachillerato</field>
+ <field name="orden">110</field>
+ </record>
+ <record id="nivel_02_bach" model="nivel.escolar">
+ <field name="name">2º Bachillerato</field>
+ <field name="orden">120</field>
+ </record>
+
+ <record id="nivel_adultos" model="nivel.escolar">
+ <field name="name">Adultos</field>
+ <field name="orden">130</field>
+ </record>
+</odoo>

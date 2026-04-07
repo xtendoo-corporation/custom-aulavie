@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!--
+            Regla de registro para que los profesores solo vean
+            los grupos donde son profesor asignado.
+        -->
+        <record id="rule_aulavie_groups_profesor" model="ir.rule">
+            <field name="name">Profesor: solo ver sus grupos asignados</field>
+            <field name="model_id" ref="aulavie_groups.model_aulavie_groups"/>
+            <field name="domain_force">[('profesor_id.user_ids', 'in', user.id)]</field>
+            <field name="groups" eval="[(4, ref('partner_social_course.group_profesor_aulavie'))]"/>
+        </record>
+
+        <!--
+            Regla de registro para que los profesores solo vean
+            las sesiones de sus grupos asignados.
+        -->
+        <record id="rule_aulavie_sesiones_profesor" model="ir.rule">
+            <field name="name">Profesor: solo ver sesiones de sus grupos</field>
+            <field name="model_id" ref="aulavie_groups.model_aulavie_sesiones"/>
+            <field name="domain_force">[('grupo_id.profesor_id.user_ids', 'in', user.id)]</field>
+            <field name="groups" eval="[(4, ref('partner_social_course.group_profesor_aulavie'))]"/>
+        </record>
+
+    </data>
+</odoo>
+

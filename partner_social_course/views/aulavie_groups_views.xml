@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Vista heredada del formulario de grupo para añadir profesor_id -->
+    <record id="view_aulavie_groups_form_inherit_profesor" model="ir.ui.view">
+        <field name="name">aulavie.groups.form.inherit.profesor</field>
+        <field name="model">aulavie.groups</field>
+        <field name="inherit_id" ref="aulavie_groups.view_aulavie_groups_form"/>
+        <field name="priority">16</field>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="profesor_id"/>
+            </field>
+        </field>
+    </record>
+
+    <!-- Vista heredada del listado de grupo para añadir profesor_id -->
+    <record id="view_aulavie_groups_tree_inherit_profesor" model="ir.ui.view">
+        <field name="name">aulavie.groups.tree.inherit.profesor</field>
+        <field name="model">aulavie.groups</field>
+        <field name="inherit_id" ref="aulavie_groups.view_aulavie_groups_tree"/>
+        <field name="priority">16</field>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="profesor_id"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>
+
