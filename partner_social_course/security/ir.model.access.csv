@@ -3,7 +3,12 @@ access_partner_course_user,access.partner.course.user,model_partner_course,base.
 access_import_alumnos_wizard_user,access.import.alumnos.wizard.user,model_import_alumnos_wizard,base.group_user,1,1,1,1
 access_nivel_escolar_user,access.nivel.escolar.user,model_nivel_escolar,base.group_user,1,1,1,1
 access_partner_course_profesor,access.partner.course.profesor,model_partner_course,partner_social_course.group_profesor_aulavie,1,0,0,0
-access_aulavie_groups_profesor,access.aulavie.groups.profesor,aulavie_groups.model_aulavie_groups,partner_social_course.group_profesor_aulavie,1,0,0,0
-access_aulavie_sesiones_profesor,access.aulavie.sesiones.profesor,aulavie_groups.model_aulavie_sesiones,partner_social_course.group_profesor_aulavie,1,0,0,0
+access_aulavie_groups_profesor,access.aulavie.groups.profesor,aulavie_groups.model_aulavie_groups,partner_social_course.group_profesor_aulavie,1,1,0,0
+access_aulavie_sesiones_profesor,access.aulavie.sesiones.profesor,aulavie_groups.model_aulavie_sesiones,partner_social_course.group_profesor_aulavie,1,1,1,1
 access_aulavie_days_profesor,access.aulavie.days.profesor,aulavie_groups.model_aulavie_days,partner_social_course.group_profesor_aulavie,1,0,0,0
+access_res_partner_profesor,access.res.partner.profesor,base.model_res_partner,partner_social_course.group_profesor_aulavie,1,1,0,0
+access_nivel_escolar_profesor,access.nivel.escolar.profesor,model_nivel_escolar,partner_social_course.group_profesor_aulavie,1,0,0,0
+access_partner_course_alumno,access.partner.course.alumno,model_partner_course,partner_social_course.group_alumno_aulavie,1,0,0,0
+access_aulavie_groups_alumno,access.aulavie.groups.alumno,aulavie_groups.model_aulavie_groups,partner_social_course.group_alumno_aulavie,1,0,0,0
+access_res_partner_alumno,access.res.partner.alumno,base.model_res_partner,partner_social_course.group_alumno_aulavie,1,0,0,0
 

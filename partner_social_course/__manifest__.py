@@ -5,7 +5,7 @@
     "category": "Contacts",
     "author": "Custom Aulavie",
     "license": "LGPL-3",
-    "depends": ["base", "contacts", "hr_attendance", "aulavie_groups"],
+    "depends": ["base", "contacts", "aulavie_groups"],
     "data": [
         "security/security.xml",
         "security/ir.model.access.csv",
@@ -13,7 +13,11 @@
         "wizard/import_alumnos_wizard_views.xml",
         "views/res_partner_views.xml",
         "views/aulavie_groups_views.xml",
+        "views/menus.xml",
         "data/nivel_escolar_data.xml",
+    ],
+    "demo": [
+        "data/demo_users.xml",
     ],
     "installable": True,
     "application": False,

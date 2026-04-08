@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Menú principal para profesores -->
+    <menuitem id="menu_aulavie_profesor_root"
+              name="Aulavie Profesor"
+              groups="partner_social_course.group_profesor_aulavie"
+              sequence="100"
+              web_icon="fa-graduation-cap"/>
+
+    <!-- Submenú: Mis Grupos -->
+    <menuitem id="menu_aulavie_grupos_profesor"
+              name="Mis Grupos"
+              parent="menu_aulavie_profesor_root"
+              action="aulavie_groups.action_aulavie_groups"
+              groups="partner_social_course.group_profesor_aulavie"
+              sequence="10"/>
+
+    <!-- Submenú: Mis Alumnos -->
+    <menuitem id="menu_aulavie_alumnos_profesor"
+              name="Mis Alumnos"
+              parent="menu_aulavie_profesor_root"
+              action="contacts.action_contacts"
+              groups="partner_social_course.group_profesor_aulavie"
+              sequence="20"/>
+
+
+</odoo>

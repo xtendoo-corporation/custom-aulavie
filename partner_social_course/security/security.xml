@@ -10,5 +10,14 @@
         <field name="comment">El profesor puede acceder a Contactos, Grupos Aulavie y fichar su Asistencia.</field>
     </record>
 
+    <!-- Grupo de seguridad: Alumno Aulavie -->
+    <record id="group_alumno_aulavie" model="res.groups">
+        <field name="name">Aulavie / Alumno</field>
+        <field name="implied_ids" eval="[
+            (4, ref('base.group_portal')),
+        ]"/>
+        <field name="comment">El alumno puede acceder a su información personal a través del portal.</field>
+    </record>
+
 </odoo>
 

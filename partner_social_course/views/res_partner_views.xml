@@ -14,13 +14,7 @@
                     <group string="Cursos y Grupos">
                         <field name="aulavie_group_ids" widget="many2many_tags" readonly="1"/>
                     </group>
-                    <group string="Relación Profesor / Alumno">
-                        <field name="profesor_id"
-                               invisible="rol_contacto == 'profesor'"
-                               domain="[('rol_contacto', '=', 'profesor')]"/>
-                        <field name="alumno_user_ids" widget="many2many_tags" readonly="1"
-                               invisible="rol_contacto != 'profesor'"/>
-                    </group>
+
                     <group string="Alumnos asociados" invisible="rol_contacto != 'profesor'">
                         <field name="alumno_ids" nolabel="1">
                             <list>
@@ -35,7 +29,6 @@
 
                 <page string="Datos alumno">
                     <group>
-                        <field name="rol_contacto"/>
                         <field name="fecha_nacimiento"/>
                         <field name="colegio_actual"/>
                         <field name="nivel_escolar_id"/>
@@ -51,6 +44,14 @@
                 </page>
 
             </xpath>
+
+            <!-- Mostrar el tipo (Padre/Madre/Tutor) en las tarjetas de contactos hijos -->
+            <xpath expr="//field[@name='child_ids']/kanban//templates//main/field[@name='name']" position="before">
+                <div invisible="type not in ('padre', 'madre', 'tutor legal')" class="fw-bold text-uppercase mb-1" style="color: #017e84; font-size: 0.9em;">
+                    <field name="type"/>
+                </div>
+            </xpath>
+
         </field>
     </record>
 

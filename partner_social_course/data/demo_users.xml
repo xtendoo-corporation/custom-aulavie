@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+
+    <!-- Usuario demo profesor -->
+    <record id="user_profesor_demo" model="res.users">
+        <field name="name">Profesor Demo</field>
+        <field name="login">profesor@demo.com</field>
+        <field name="email">profesor@demo.com</field>
+        <field name="password">demo123</field>
+        <field name="groups_id" eval="[
+            (4, ref('base.group_user')),
+            (4, ref('partner_social_course.group_profesor_aulavie')),
+        ]"/>
+    </record>
+
+    <!-- Partner asociado al profesor -->
+    <record id="partner_profesor_demo" model="res.partner">
+        <field name="name">Profesor Demo</field>
+        <field name="email">profesor@demo.com</field>
+        <field name="is_company">False</field>
+        <field name="user_ids" eval="[(6, 0, [ref('user_profesor_demo')])]"/>
+        <field name="rol_contacto">profesor</field>
+    </record>
+
+    <!-- Usuario demo alumno (portal) -->
+    <record id="user_alumno_demo" model="res.users">
+        <field name="name">Alumno Demo</field>
+        <field name="login">alumno@demo.com</field>
+        <field name="email">alumno@demo.com</field>
+        <field name="password">demo123</field>
+        <field name="groups_id" eval="[
+            (4, ref('base.group_portal')),
+            (4, ref('partner_social_course.group_alumno_aulavie')),
+        ]"/>
+    </record>
+
+    <!-- Partner asociado al alumno -->
+    <record id="partner_alumno_demo" model="res.partner">
+        <field name="name">Alumno Demo</field>
+        <field name="email">alumno@demo.com</field>
+        <field name="is_company">False</field>
+        <field name="user_ids" eval="[(6, 0, [ref('user_alumno_demo')])]"/>
+        <field name="rol_contacto">alumno</field>
+    </record>
+
+</odoo>

@@ -19,9 +19,22 @@ class ResPartner(models.Model):
             ("profesor", "Profesor"),
         ],
         string="Rol",
+        compute="_compute_rol_contacto",
+        store=True,
         default="alumno",
         tracking=True,
     )
+
+    @api.depends("user_ids", "user_ids.share")
+    def _compute_rol_contacto(self):
+        """Un partner con un usuario interno (share=False) es 'profesor',
+        el resto es 'alumno'."""
+        for partner in self:
+            if partner.user_ids.filtered(lambda u: not u.share):
+                partner.rol_contacto = "profesor"
+            else:
+                partner.rol_contacto = "alumno"
+
     profesor_id = fields.Many2one(
         comodel_name="res.partner",
         string="Profesor",
@@ -76,11 +89,12 @@ class ResPartner(models.Model):
         string="¿Permites al alumno menor volver solo a casa?",
     )
 
-    # Añadir tipos Padre y Madre al campo nativo de Odoo
+    # Añadir tipos Padre, Madre y tutor legal al campo nativo de Odoo
     type = fields.Selection(
         selection_add=[
-            ("padre", "Padre / Tutor legal 1"),
-            ("madre", "Madre / Tutor legal 2"),
+            ("padre", "Padre"),
+            ("madre", "Madre"),
+            ("tutor legal", "Tutor legal"),
         ],
         ondelete={"padre": "set default", "madre": "set default"},
     )
@@ -101,7 +115,7 @@ class ResPartner(models.Model):
         for partner in self:
             partner.alumno_user_ids = partner.alumno_ids.mapped("user_ids")
 
-    @api.depends("rol_contacto")
+    @api.depends("user_ids", "aulavie_group_ids")
     def _compute_profesor_visible_ids(self):
         """Calcula qué profesores pueden ver cada contacto.
         Un profesor ve un contacto si este aparece en contactos_ids
