@@ -6,44 +6,33 @@
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
-
-
-             <!-- Insertar antes de la primera pestaña existente -->
-            <xpath expr="//notebook/page[1]" position="before">
-                <!-- Primera pestaña por defecto -->
-                <!-- Primero: Gestión académica -->
-                <page string="Gestión académica">
-                    <notebook>
-                        <page string="Redes y Cursos">
-                            <group string="Configuración">
-                                <field name="permitir_salir_redes_sociales"/>
-                            </group>
-                            <group string="Cursos y Grupos">
-                                <field name="curso_ids" widget="many2many_tags" options="{'no_create_edit': False}"/>
-                                <field name="aulavie_group_ids" widget="many2many_tags" readonly="1"/>
-                            </group>
-                            <group string="Relación Profesor / Alumno">
-                                <field name="profesor_id"
-                                       invisible="rol_contacto == 'profesor'"
-                                       domain="[('rol_contacto', '=', 'profesor')]"/>
-                                <field name="alumno_user_ids" widget="many2many_tags" readonly="1"
-                                       invisible="rol_contacto != 'profesor'"/>
-                            </group>
-                            <group string="Alumnos asociados" invisible="rol_contacto != 'profesor'">
-                                <field name="alumno_ids" nolabel="1">
-                                    <list>
-                                        <field name="name"/>
-                                        <field name="email"/>
-                                        <field name="phone"/>
-                                        <field name="rol_contacto"/>
-                                    </list>
-                                </field>
-                            </group>
-                        </page>
-                    </notebook>
+            <xpath expr="//notebook" position="inside">
+                <page string="Redes y Cursos">
+                    <group string="Configuración">
+                        <field name="permitir_salir_redes_sociales"/>
+                    </group>
+                    <group string="Cursos y Grupos">
+                        <field name="aulavie_group_ids" widget="many2many_tags" readonly="1"/>
+                    </group>
+                    <group string="Relación Profesor / Alumno">
+                        <field name="profesor_id"
+                               invisible="rol_contacto == 'profesor'"
+                               domain="[('rol_contacto', '=', 'profesor')]"/>
+                        <field name="alumno_user_ids" widget="many2many_tags" readonly="1"
+                               invisible="rol_contacto != 'profesor'"/>
+                    </group>
+                    <group string="Alumnos asociados" invisible="rol_contacto != 'profesor'">
+                        <field name="alumno_ids" nolabel="1">
+                            <list>
+                                <field name="name"/>
+                                <field name="email"/>
+                                <field name="phone"/>
+                                <field name="rol_contacto"/>
+                            </list>
+                        </field>
+                    </group>
                 </page>
 
-                <!-- Segundo: Datos alumno -->
                 <page string="Datos alumno">
                     <group>
                         <field name="rol_contacto"/>

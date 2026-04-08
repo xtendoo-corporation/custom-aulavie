@@ -7,13 +7,7 @@ class ResPartner(models.Model):
     permitir_salir_redes_sociales = fields.Boolean(
         string="Permitir salir en redes sociales",
     )
-    curso_ids = fields.Many2many(
-        comodel_name="partner.course",
-        relation="res_partner_partner_course_rel",
-        column1="partner_id",
-        column2="course_id",
-        string="Cursos",
-    )
+
     aulavie_group_ids = fields.Many2many(
         comodel_name="aulavie.groups",
         string="Grupos Aulavie",
@@ -47,6 +41,17 @@ class ResPartner(models.Model):
         comodel_name="aulavie.groups",
         inverse_name="profesor_id",
         string="Grupos como Profesor",
+    )
+
+    # Profesores que pueden ver este contacto (stored para ir.rule)
+    profesor_visible_ids = fields.Many2many(
+        comodel_name="res.partner",
+        relation="partner_profesor_visible_rel",
+        column1="partner_id",
+        column2="profesor_id",
+        string="Profesores que ven este contacto",
+        compute="_compute_profesor_visible_ids",
+        store=True,
     )
 
     fecha_nacimiento = fields.Date(
@@ -95,3 +100,19 @@ class ResPartner(models.Model):
     def _compute_alumno_user_ids(self):
         for partner in self:
             partner.alumno_user_ids = partner.alumno_ids.mapped("user_ids")
+
+    @api.depends("rol_contacto")
+    def _compute_profesor_visible_ids(self):
+        """Calcula qué profesores pueden ver cada contacto.
+        Un profesor ve un contacto si este aparece en contactos_ids
+        de algún grupo donde ese profesor es profesor_id.
+        También el propio profesor se ve a sí mismo.
+        NOTA: se recalcula también desde aulavie.groups.write/create."""
+        Group = self.env["aulavie.groups"].sudo()
+        for partner in self:
+            groups = Group.search([("contactos_ids", "in", partner.id)])
+            profesores = groups.mapped("profesor_id")
+            if partner.rol_contacto == "profesor":
+                profesores |= partner
+            partner.profesor_visible_ids = profesores
+

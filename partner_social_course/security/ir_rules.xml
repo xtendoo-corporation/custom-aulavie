@@ -24,6 +24,22 @@
             <field name="groups" eval="[(4, ref('partner_social_course.group_profesor_aulavie'))]"/>
         </record>
 
+        <!--
+            Regla de registro para que los profesores solo vean
+            contactos de sus grupos (alumnos) y a sí mismos.
+            Usa el campo stored profesor_visible_ids.
+        -->
+        <record id="rule_res_partner_profesor" model="ir.rule">
+            <field name="name">Profesor: solo ver contactos de sus grupos</field>
+            <field name="model_id" ref="base.model_res_partner"/>
+            <field name="domain_force">[
+                '|',
+                ('profesor_visible_ids.user_ids', 'in', user.id),
+                ('id', '=', user.partner_id.id)
+            ]</field>
+            <field name="groups" eval="[(4, ref('partner_social_course.group_profesor_aulavie'))]"/>
+        </record>
+
     </data>
 </odoo>
 
